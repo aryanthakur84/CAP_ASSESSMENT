@@ -1,0 +1,5 @@
+ID,name,floor,head,capacity,phone,isActive
+d1111111-0000-0000-0000-000000000001,Cardiology,2,Dr. Ramesh Sharma,30,+91-9876543210,true
+d1111111-0000-0000-0000-000000000002,Neurology,3,Dr. Priya Mehta,25,+91-9876543211,true
+d1111111-0000-0000-0000-000000000003,Orthopedics,1,Dr. Anil Verma,20,+91-9876543212,true
+d1111111-0000-0000-0000-000000000004,Pediatrics,4,Dr. Sunita Rao,35,+91-9876543213,true

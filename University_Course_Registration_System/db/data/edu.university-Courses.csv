@@ -1,0 +1,7 @@
+code,title,description,credits,maxStudents,currentEnrolled,semester,department_code,professor_ID,schedule,roomNumber,isActive
+CS101,Intro to Programming,Basic programming concepts,4,60,45,1,CSE,p1111111-0000-0000-0000-000000000001,MWF 10:00-11:00,A201,true
+CS201,Data Structures,Arrays and linked lists,4,50,40,2,CSE,p1111111-0000-0000-0000-000000000004,TTH 09:00-10:30,A202,true
+EC101,Basic Electronics,Electronic components,3,55,50,1,ECE,p1111111-0000-0000-0000-000000000002,MWF 11:00-12:00,B101,true
+EC201,Digital Circuits,Logic gates,3,45,30,2,ECE,p1111111-0000-0000-0000-000000000005,TTH 02:00-03:30,B102,true
+MB101,Business Fundamentals,Core business concepts,3,70,65,1,MBA,p1111111-0000-0000-0000-000000000003,MWF 02:00-03:00,C101,true
+MB201,Marketing Management,Marketing strategies,3,60,20,3,MBA,p1111111-0000-0000-0000-000000000003,TTH 11:00-12:30,C102,true

@@ -1,0 +1,5 @@
+ID,name,company,phone,email,address,city,pincode,gstNumber,tier
+c3333333-0000-0000-0000-000000000001,Amit Shah,Shah Traders,+91-9900000001,amit@shah.com,12 MG Road,Mumbai,400001,27AABCS1234A1Z5,Premium
+c3333333-0000-0000-0000-000000000002,Priya Patel,Patel Exports,+91-9900000002,priya@patel.com,45 Ring Road,Delhi,110001,07AACCP5678B1Z3,Enterprise
+c3333333-0000-0000-0000-000000000003,Rahul Jain,Jain Retail,+91-9900000003,rahul@jain.com,78 Brigade Road,Bangalore,560001,29AAACJ9012C1Z1,Regular
+c3333333-0000-0000-0000-000000000004,Neha Gupta,Gupta Wholesale,+91-9900000004,neha@gupta.com,23 Park Street,Kolkata,700001,19AAADG3456D1Z9,Premium

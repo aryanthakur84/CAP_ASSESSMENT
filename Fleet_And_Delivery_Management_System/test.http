@@ -1,0 +1,44 @@
+### GET available vehicles
+GET http://localhost:4004/odata/v4/logistics/Vehicles?$filter=status eq 'Available'
+
+### GET shipments with status InTransit
+GET http://localhost:4004/odata/v4/logistics/Shipments?$filter=status eq 'InTransit'
+
+### GET all shipments for a specific customer
+GET http://localhost:4004/odata/v4/logistics/Shipments?$filter=customer_ID eq 'c3333333-0000-0000-0000-000000000001'
+
+### POST a new shipment booking
+POST http://localhost:4004/odata/v4/logistics/Shipments
+Content-Type: application/json
+
+{
+  "trackingNumber": "SL-2026-00009",
+  "customer_ID": "c3333333-0000-0000-0000-000000000002",
+  "driver_ID": "d2222222-0000-0000-0000-000000000003",
+  "vehicle_ID": "v1111111-0000-0000-0000-000000000002",
+  "pickupAddress": "10 Link Road",
+  "deliveryAddress": "55 Anna Salai",
+  "pickupCity": "Mumbai",
+  "deliveryCity": "Chennai",
+  "weight": 250.00,
+  "status": "Booked",
+  "bookedAt": "2024-06-11T10:00:00",
+  "estimatedDelivery": "2024-06-15",
+  "charges": 5000.00,
+  "paymentStatus": "Pending"
+}
+
+### PATCH shipment status to Delivered
+PATCH http://localhost:4004/odata/v4/logistics/Shipments(s5555555-0000-0000-0000-000000000002)
+Content-Type: application/json
+
+{
+  "status": "Delivered",
+  "deliveredAt": "2024-06-08T19:00:00"
+}
+
+### GET routes between two cities
+GET http://localhost:4004/odata/v4/logistics/Routes?$filter=fromCity eq 'Mumbai' and toCity eq 'Delhi'
+
+### GET drivers sorted by rating descending
+GET http://localhost:4004/odata/v4/logistics/Drivers?$orderby=rating desc

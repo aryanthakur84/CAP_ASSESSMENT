@@ -1,0 +1,6 @@
+ID,name,email,phone,bio,company,designation,expertise,photoUrl,rating,totalTalks,isActive
+sp111111-0000-0000-0000-000000000001,Amit Sharma,amit@speaker.com,+91-9900000001,Expert in cloud tech,TechCorp,CTO,"Cloud,AWS,DevOps",https://photos.com/amit.jpg,4.8,25,true
+sp111111-0000-0000-0000-000000000002,Neha Gupta,neha@speaker.com,+91-9900000002,AI researcher,AI Labs,Lead Researcher,"AI,ML,Python",https://photos.com/neha.jpg,4.9,30,true
+sp111111-0000-0000-0000-000000000003,Rahul Verma,rahul@speaker.com,+91-9900000003,Startup mentor,StartHub,Founder,"Startup,Finance",https://photos.com/rahul.jpg,4.5,15,true
+sp111111-0000-0000-0000-000000000004,Sonia Patel,sonia@speaker.com,+91-9900000004,UX designer,DesignCo,Head of Design,"UX,Design,Figma",https://photos.com/sonia.jpg,4.7,20,true
+sp111111-0000-0000-0000-000000000005,Vikram Nair,vikram@speaker.com,+91-9900000005,Blockchain expert,CryptoTech,Architect,"Blockchain,Web3",https://photos.com/vikram.jpg,4.3,10,true

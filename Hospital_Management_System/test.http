@@ -1,0 +1,47 @@
+### GET all doctors filtered by specialization
+GET http://localhost:4004/odata/v4/hospital/Doctors?$filter=specialization eq 'Cardiology'
+
+### GET appointments for a specific date
+GET http://localhost:4004/odata/v4/hospital/Appointments?$filter=appointmentDate eq 2024-06-10
+
+### POST a new patient
+POST http://localhost:4004/odata/v4/hospital/Patients
+Content-Type: application/json
+
+{
+  "firstName": "Deepak",
+  "lastName": "Malhotra",
+  "dateOfBirth": "1992-09-25",
+  "gender": "Male",
+  "bloodGroup": "O+",
+  "phone": "+91-9900000006",
+  "email": "deepak@gmail.com",
+  "address": "Bangalore",
+  "emergencyContact": "+91-9900000015",
+  "registrationDate": "2024-06-01"
+}
+
+### POST a new appointment
+POST http://localhost:4004/odata/v4/hospital/Appointments
+Content-Type: application/json
+
+{
+  "patient_ID": "P001",
+  "doctor_ID": "DR001",
+  "appointmentDate": "2024-06-20",
+  "appointmentTime": "11:00:00",
+  "status": "Scheduled",
+  "reason": "Follow up",
+  "fee": 1500.00
+}
+
+### GET patients filtered by blood group
+GET http://localhost:4004/odata/v4/hospital/Patients?$filter=bloodGroup eq 'B+'
+
+### PATCH appointment status to Completed
+PATCH http://localhost:4004/odata/v4/hospital/Appointments('A001')
+Content-Type: application/json
+
+{
+  "status": "Completed"
+}

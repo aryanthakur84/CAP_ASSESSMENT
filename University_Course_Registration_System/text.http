@@ -1,0 +1,33 @@
+### GET courses filtered by department and semester
+GET http://localhost:4004/odata/v4/university/Courses?$filter=department_code eq 'CSE' and semester eq 2
+
+### GET students with CGPA above 8.0
+GET http://localhost:4004/odata/v4/university/Students?$filter=cgpa gt 8.0
+
+### POST new student enrollment
+POST http://localhost:4004/odata/v4/university/Enrollments
+Content-Type: application/json
+
+{
+  "student_ID": "s2222222-0000-0000-0000-000000000005",
+  "course_code": "MB201",
+  "enrollmentDate": "2024-06-01",
+  "status": "Enrolled",
+  "attendancePercent": 0.00
+}
+
+### GET all enrollments for a specific student
+GET http://localhost:4004/odata/v4/university/Enrollments?$filter=student_ID eq 's2222222-0000-0000-0000-000000000001'
+
+### GET courses where seats are available
+GET http://localhost:4004/odata/v4/university/Courses?$filter=currentEnrolled lt maxStudents
+
+### PATCH enrollment to add grade
+PATCH http://localhost:4004/odata/v4/university/Enrollments(student_ID='s2222222-0000-0000-0000-000000000001',course_code='CS201')
+Content-Type: application/json
+
+{
+  "grade": "A",
+  "gradePoints": 4.00,
+  "status": "Completed"
+}

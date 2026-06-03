@@ -1,0 +1,5 @@
+ID,orderNumber,customer_ID,orderDate,amount,currency_code,status
+SO1,SO1001,CUS1,2025-08-01,66000,INR,Completed
+SO2,SO1002,CUS2,2025-08-02,90000,INR,Pending
+SO3,SO1003,CUS3,2025-08-03,2500,INR,Completed
+SO4,SO1004,CUS4,2025-08-04,12000,INR,Processing

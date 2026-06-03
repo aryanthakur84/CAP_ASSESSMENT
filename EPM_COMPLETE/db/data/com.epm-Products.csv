@@ -1,0 +1,9 @@
+ID,name,description,price,currency_code,stock,minStock,rating,supplier_ID,category_ID
+PROD1,Dell Laptop,Latitude Series,65000,INR,20,5,4.5,SUP1,CAT2
+PROD2,HP Laptop,Elitebook,70000,INR,15,5,4.2,SUP1,CAT2
+PROD3,iPhone,Apple Phone,90000,INR,8,10,4.8,SUP2,CAT3
+PROD4,Samsung S24,Android Phone,80000,INR,12,5,4.6,SUP2,CAT3
+PROD5,Mouse,Wireless Mouse,1000,INR,50,10,4.0,SUP3,CAT4
+PROD6,Keyboard,Mechanical Keyboard,2500,INR,40,10,4.3,SUP3,CAT4
+PROD7,Printer,Laser Printer,15000,INR,5,5,4.1,SUP4,CAT5
+PROD8,Monitor,24 Inch Monitor,12000,INR,7,10,4.4,SUP4,CAT5  

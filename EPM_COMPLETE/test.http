@@ -1,0 +1,34 @@
+### Products
+GET http://localhost:4004/odata/v4/admin/Products
+
+###
+
+GET http://localhost:4004/odata/v4/admin/Products?$expand=supplier,category
+
+###
+
+GET http://localhost:4004/odata/v4/admin/Products?$filter=stock lt 10
+
+###
+
+GET http://localhost:4004/odata/v4/admin/Products?$orderby=price desc
+
+###
+
+GET http://localhost:4004/odata/v4/admin/Customers
+
+###
+
+GET http://localhost:4004/odata/v4/admin/SalesOrders?$expand=customer
+
+###
+
+GET http://localhost:4004/odata/v4/report/ProductCatalog
+
+###
+
+GET http://localhost:4004/odata/v4/report/OrderReport
+
+###
+
+GET http://localhost:4004/odata/v4/report/LowStockAlert

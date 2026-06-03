@@ -1,0 +1,5 @@
+ID,name,contact,email,phone,city,country_code,isActive
+SUP1,ABC Suppliers,Raj Sharma,raj@abc.com,9876543210,Mumbai,IN,true
+SUP2,TechSource,Amit Kumar,amit@techsource.com,9876543211,Delhi,IN,true
+SUP3,Global Parts,Sarah Lee,sarah@global.com,9876543212,Bangalore,IN,true
+SUP4,Prime Wholesale,John Smith,john@prime.com,9876543213,Chennai,IN,true

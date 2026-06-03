@@ -1,0 +1,6 @@
+ID,name,description,parentCategory_ID
+CAT1,Electronics,Electronic Items,
+CAT2,Laptops,Laptop Products,CAT1
+CAT3,Mobiles,Mobile Devices,CAT1
+CAT4,Accessories,Accessories,CAT1
+CAT5,Office,Office Equipment,

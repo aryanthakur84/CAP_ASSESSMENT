@@ -1,0 +1,97 @@
+### Home
+GET http://localhost:4004/
+
+### All Books
+GET http://localhost:4004/catalog/Books
+
+### Single Book
+GET http://localhost:4004/catalog/Books(b1000001-0000-0000-0000-000000000001)
+
+### All Authors
+GET http://localhost:4004/catalog/Authors
+
+### Books with Author
+GET http://localhost:4004/catalog/Books?$expand=author
+
+### Authors with Books
+GET http://localhost:4004/catalog/Authors?$expand=books
+
+### Filter Fantasy Books
+GET http://localhost:4004/catalog/Books?$filter=genre eq 'Fantasy'
+
+### Sort by Price Desc
+GET http://localhost:4004/catalog/Books?$orderby=price desc
+
+### Top 3 Books
+GET http://localhost:4004/catalog/Books?$top=3
+
+### Metadata
+GET http://localhost:4004/catalog/$metadata
+
+### Verify Email Hidden (Expected Error)
+GET http://localhost:4004/catalog/Authors?$select=name,email
+
+### Verify Readonly Books (Expected 405)
+POST http://localhost:4004/catalog/Books
+Content-Type: application/json
+
+{
+  "title": "New Book",
+  "price": 15.99
+}
+
+### Admin - Get Authors
+GET http://localhost:4004/admin/Authors
+
+### Admin - Get Books
+GET http://localhost:4004/admin/Books
+
+### Admin - Create Author
+POST http://localhost:4004/admin/Authors
+Content-Type: application/json
+
+{
+  "name": "Dan Brown",
+  "country": "United States",
+  "email": "dan@example.com"
+}
+
+### Admin - Create Book
+POST http://localhost:4004/admin/Books
+Content-Type: application/json
+
+{
+  "title": "The Da Vinci Code",
+  "genre": "Thriller",
+  "price": 14.99,
+  "stock": 100,
+  "rating": 4.2,
+  "isbn": "9780307474278",
+  "author_ID": "PASTE_AUTHOR_ID_HERE"
+}
+
+### Admin - Create Review
+POST http://localhost:4004/admin/Reviews
+Content-Type: application/json
+
+{
+  "reviewer": "Aryan",
+  "rating": 5,
+  "comment": "Excellent book"
+}
+
+### Catalog - Create Review (Allowed because @insertonly)
+POST http://localhost:4004/catalog/Reviews
+Content-Type: application/json
+
+{
+  "reviewer": "Test User",
+  "rating": 4,
+  "comment": "Very good"
+}
+
+### Catalog - Get Reviews
+GET http://localhost:4004/catalog/Reviews
+
+### Admin - Get Reviews
+GET http://localhost:4004/admin/Reviews

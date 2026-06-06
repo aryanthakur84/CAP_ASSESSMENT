@@ -46,31 +46,54 @@ entity Customers : cuid, managed {
 }
 
 entity SalesOrders : cuid, managed {
+
     orderNumber : String(30);
+
     customer    : Association to Customers;
+
     orderDate   : Date;
+
     amount      : Decimal(12,2);
-    currency    : Currency;
+
+    currency    : String(3);
+
     status      : String(30);
+
+    netAmount   : Decimal(12,2);
+
+    taxAmount   : Decimal(12,2);
+
+    grossAmount : Decimal(12,2);
 
     items : Composition of many SalesOrderItems
               on items.order = $self;
 }
 
 entity SalesOrderItems : cuid {
+
     order      : Association to SalesOrders;
+
     product    : Association to Products;
+
     quantity   : Integer;
+
     unitPrice  : Decimal(10,2);
+
     netAmount  : Decimal(12,2);
 }
 
 entity PurchaseOrders : cuid, managed {
+
     poNumber   : String(30);
+
     supplier   : Association to Suppliers;
+
     orderDate  : Date;
+
     amount     : Decimal(12,2);
-    currency   : Currency;
+
+    currency   : String(3);
+
     status     : String(30);
 
     items : Composition of many PurchaseOrderItems
@@ -78,8 +101,12 @@ entity PurchaseOrders : cuid, managed {
 }
 
 entity PurchaseOrderItems : cuid {
+
     order      : Association to PurchaseOrders;
+
     product    : Association to Products;
+
     quantity   : Integer;
+
     unitPrice  : Decimal(10,2);
 }

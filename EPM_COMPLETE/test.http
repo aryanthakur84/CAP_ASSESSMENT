@@ -1,4 +1,4 @@
-### Products
+### PRODUCTS
 GET http://localhost:4004/odata/v4/admin/Products
 
 ###
@@ -19,10 +19,6 @@ GET http://localhost:4004/odata/v4/admin/Customers
 
 ###
 
-GET http://localhost:4004/odata/v4/admin/SalesOrders?$expand=customer
-
-###
-
 GET http://localhost:4004/odata/v4/report/ProductCatalog
 
 ###
@@ -32,3 +28,162 @@ GET http://localhost:4004/odata/v4/report/OrderReport
 ###
 
 GET http://localhost:4004/odata/v4/report/LowStockAlert
+
+###
+
+#################################################
+# TEST 1: Create order without customer (FAIL)
+#################################################
+
+POST http://localhost:4004/odata/v4/sales/SalesOrders
+Content-Type: application/json
+
+{
+  "orderDate": "2026-08-15",
+  "items": [
+    {
+      "product_ID": "PROD1",
+      "quantity": 2,
+      "unitPrice": 50
+    }
+  ]
+}
+
+###
+
+#################################################
+# TEST 2: Create order with past date (FAIL)
+#################################################
+
+POST http://localhost:4004/odata/v4/sales/SalesOrders
+Content-Type: application/json
+
+{
+  "customer_ID": "CUS1",
+  "orderDate": "2020-01-01",
+  "items": [
+    {
+      "product_ID": "PROD1",
+      "quantity": 2,
+      "unitPrice": 50
+    }
+  ]
+}
+
+###
+
+#################################################
+# TEST 3: Quantity = 0 (FAIL)
+#################################################
+
+POST http://localhost:4004/odata/v4/sales/SalesOrders
+Content-Type: application/json
+
+{
+  "customer_ID": "CUS1",
+  "orderDate": "2026-08-15",
+  "items": [
+    {
+      "product_ID": "PROD1",
+      "quantity": 0,
+      "unitPrice": 50
+    }
+  ]
+}
+
+###
+
+#################################################
+# TEST 4: Valid Order (SUCCESS)
+#################################################
+
+POST http://localhost:4004/odata/v4/sales/SalesOrders
+Content-Type: application/json
+
+{
+  "customer_ID": "CUS1",
+  "orderDate": "2026-08-15",
+  "currency": "INR",
+  "items": [
+    {
+      "product_ID": "PROD1",
+      "quantity": 1,
+      "unitPrice": 50
+    },
+    {
+      "product_ID": "PROD5",
+      "quantity": 1,
+      "unitPrice": 29.99
+    }
+  ]
+}
+
+###
+
+#################################################
+# TEST 5: View Orders
+#################################################
+
+GET http://localhost:4004/odata/v4/sales/SalesOrders
+
+###
+
+#################################################
+# GET ORDERS WITH ITEMS
+#################################################
+
+GET http://localhost:4004/odata/v4/sales/SalesOrders?$expand=items
+
+###
+
+#################################################
+# REPLACE NEW_ORDER_ID AFTER TEST 4
+#################################################
+
+PATCH http://localhost:4004/odata/v4/sales/SalesOrders(NEW_ORDER_ID)
+Content-Type: application/json
+
+{
+  "status": "Confirmed"
+}
+
+###
+
+PATCH http://localhost:4004/odata/v4/sales/SalesOrders(NEW_ORDER_ID)
+Content-Type: application/json
+
+{
+  "status": "Shipped"
+}
+
+###
+
+PATCH http://localhost:4004/odata/v4/sales/SalesOrders(NEW_ORDER_ID)
+Content-Type: application/json
+
+{
+  "status": "Delivered"
+}
+
+###
+
+#################################################
+# SHOULD FAIL
+#################################################
+
+PATCH http://localhost:4004/odata/v4/sales/SalesOrders(NEW_ORDER_ID)
+Content-Type: application/json
+
+{
+  "status": "Confirmed"
+}
+
+###
+
+#################################################
+# SHOULD FAIL
+#################################################
+
+DELETE http://localhost:4004/odata/v4/sales/SalesOrders(NEW_ORDER_ID)
+
+###

@@ -84,17 +84,21 @@ entity SalesOrderItems : cuid {
 
 entity PurchaseOrders : cuid, managed {
 
-    poNumber   : String(30);
+    poNumber      : String(30);
 
-    supplier   : Association to Suppliers;
+    supplier      : Association to Suppliers;
 
-    orderDate  : Date;
+    orderDate     : Date;
 
-    amount     : Decimal(12,2);
+    expectedDate  : Date;
 
-    currency   : String(3);
+    notes         : String(500);
 
-    status     : String(30);
+    amount        : Decimal(12,2);
+
+    currency      : String(3);
+
+    status        : String(30);
 
     items : Composition of many PurchaseOrderItems
               on items.order = $self;
@@ -109,4 +113,6 @@ entity PurchaseOrderItems : cuid {
     quantity   : Integer;
 
     unitPrice  : Decimal(10,2);
+
+    currency   : String(3);
 }

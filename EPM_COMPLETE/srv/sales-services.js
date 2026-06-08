@@ -1,5 +1,7 @@
 const cds = require('@sap/cds');
-const { SELECT } = cds.ql;
+const { SELECT, UPDATE } = cds.ql;
+
+
 
 module.exports = cds.service.impl(function () {
 
@@ -184,5 +186,125 @@ module.exports = cds.service.impl(function () {
       }
     }
   });
+
+
+  // =========================
+// CONFIRM ORDER
+// =========================
+
+this.on('confirm', 'SalesOrders', async (req) => {
+
+  const orderId = req.params[0].ID;
+
+  const order = await SELECT.one
+    .from('com.epm.SalesOrders')
+    .where({ ID: orderId });
+
+  if (!order) {
+    req.reject(404, 'Order not found');
+  }
+
+  if (order.status !== 'New') {
+    req.reject(
+      400,
+      `Order must be in New status. Current status: ${order.status}`
+    );
+  }
+
+  await UPDATE('com.epm.SalesOrders')
+    .set({ status: 'Confirmed' })
+    .where({ ID: orderId });
+
+  return {
+    status: 'Confirmed',
+    message: 'Order confirmed successfully'
+  };
+});
+
+
+// =========================
+// CANCEL ORDER
+// =========================
+
+this.on('cancel', 'SalesOrders', async (req) => {
+
+  const orderId = req.params[0].ID;
+  const { reason } = req.data;
+
+  const order = await SELECT.one
+    .from('com.epm.SalesOrders')
+    .where({ ID: orderId });
+
+  if (!order) {
+    req.reject(404, 'Order not found');
+  }
+
+  if (
+    order.status === 'Delivered' ||
+    order.status === 'Cancelled'
+  ) {
+    req.reject(400, 'Order cannot be cancelled');
+  }
+
+  if (!reason) {
+    req.reject(400, 'Cancellation reason is required');
+  }
+
+  await UPDATE('com.epm.SalesOrders')
+    .set({ status: 'Cancelled' })
+    .where({ ID: orderId });
+
+  return {
+    status: 'Cancelled',
+    message: `Order cancelled. Reason: ${reason}`
+  };
+});
+
+
+// =========================
+// SHIP ORDER
+// =========================
+
+this.on('ship', 'SalesOrders', async (req) => {
+
+  const orderId = req.params[0].ID;
+
+  const {
+    trackingNumber,
+    carrier
+  } = req.data;
+
+  const order = await SELECT.one
+    .from('com.epm.SalesOrders')
+    .where({ ID: orderId });
+
+  if (!order) {
+    req.reject(404, 'Order not found');
+  }
+
+  if (order.status !== 'Confirmed') {
+    req.reject(
+      400,
+      'Only confirmed orders can be shipped'
+    );
+  }
+
+  if (!trackingNumber) {
+    req.reject(400, 'Tracking number is required');
+  }
+
+  if (!carrier) {
+    req.reject(400, 'Carrier is required');
+  }
+
+  await UPDATE('com.epm.SalesOrders')
+    .set({ status: 'Shipped' })
+    .where({ ID: orderId });
+
+  return {
+    status: 'Shipped',
+    message: `Order shipped via ${carrier}`
+  };
+});
 
 });

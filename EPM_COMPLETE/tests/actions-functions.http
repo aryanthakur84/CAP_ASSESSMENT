@@ -1,0 +1,108 @@
+@base = http://localhost:4004/orders
+
+### =====================================
+### CREATE CUSTOMER
+### =====================================
+
+POST {{base}}/Customers
+Content-Type: application/json
+
+{
+  "name": "Test Customer",
+  "email": "test@example.com",
+  "city": "Mumbai",
+  "creditLimit": 500000
+}
+
+###
+
+### GET CUSTOMERS (copy generated ID)
+GET {{base}}/Customers
+
+###
+
+### CREATE ORDER
+POST {{base}}/Orders
+Content-Type: application/json
+
+{
+  "orderNumber": "SO-TEST-001",
+  "customer_ID": "8f6ab35e-63d6-4db5-9af5-346ba3f796ed",
+  "orderDate": "2026-06-02",
+  "amount": 1500,
+  "currency": "INR",
+  "status": "New",
+  "netAmount": 1271.19,
+  "taxAmount": 228.81,
+  "grossAmount": 1500
+}
+
+###
+
+### GET ORDERS (copy generated ID)
+GET {{base}}/Orders
+
+###
+
+### CONFIRM ORDER
+POST {{base}}/Orders(ID='54c70626-ec4f-4e53-befb-ed74fd7e5ff7')/OrderService.confirm
+Content-Type: application/json
+
+{}
+
+###
+
+### SHIP ORDER
+POST {{base}}/Orders(ID='550e8400-e29b-41d4-a716-446655440001')/OrderService.ship
+Content-Type: application/json
+
+{
+  "trackingNumber": "TRK-2026-001",
+  "carrier": "BlueDart"
+}
+
+###
+
+### DELIVER ORDER
+POST {{base}}/Orders(ID='550e8400-e29b-41d4-a716-446655440001')/OrderService.deliver
+Content-Type: application/json
+
+{}
+
+###
+
+### CANCEL ORDER
+POST {{base}}/Orders(ID='550e8400-e29b-41d4-a716-446655440003')/OrderService.cancel
+Content-Type: application/json
+
+{
+  "reason": "Customer changed mind"
+}
+
+###
+
+### GET TOTAL
+GET {{base}}/Orders(ID='550e8400-e29b-41d4-a716-446655440003')/OrderService.getTotal()
+
+###
+
+### BULK CONFIRM
+POST http://localhost:4004/orders/bulkConfirm
+Content-Type: application/json
+
+{
+  "orderIds": [
+    "550e8400-e29b-41d4-a716-446655440001",
+    "550e8400-e29b-41d4-a716-446655440002",
+    "550e8400-e29b-41d4-a716-446655440003"
+  ]
+}
+###
+
+### ORDER STATS
+GET {{base}}/getOrderStats(year=2026,month=6)
+
+###
+
+### TOP CUSTOMERS
+GET {{base}}/getTopCustomers(limit=3)

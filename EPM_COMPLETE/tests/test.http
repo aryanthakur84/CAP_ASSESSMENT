@@ -186,4 +186,68 @@ Content-Type: application/json
 
 DELETE http://localhost:4004/odata/v4/sales/SalesOrders(NEW_ORDER_ID)
 
+
+
+
+
+
+
+
+#Adding unbound service functions for testing 
 ###
+#################################################
+# Generate Report
+#################################################
+
+POST http://localhost:4004/analytics/GenerateReport
+Content-Type: application/json
+
+{
+  "reportType": "Sales",
+  "startDate": "2026-01-01",
+  "endDate": "2026-05-31"
+}
+###
+
+#################################################
+# Health Check
+#################################################
+
+POST http://localhost:4004/analytics/PingHealth
+Content-Type: application/json
+
+{}
+
+
+
+
+
+
+
+
+###
+GET http://localhost:4004/sales/SalesOrders
+
+
+### Confirm a specific order
+POST http://localhost:4004/odata/v4/sales/SalesOrders(ID='550e8400-e29b-41d4-a716-446655440001')/SalesService.confirm
+Content-Type: application/json
+
+{}
+
+
+### Cancel a specific order (with reason parameter)
+POST http://localhost:4004/odata/v4/sales/SalesOrders(ID='550e8400-e29b-41d4-a716-446655440001')/SalesService.cancel
+Content-Type: application/json
+
+{
+  "reason": "Customer changed their mind"
+}
+### Ship an order (with tracking info)
+POST http://localhost:4004/odata/v4/sales/SalesOrders(ID='550e8400-e29b-41d4-a716-446655440002')/SalesService.ship
+Content-Type: application/json
+
+{
+  "trackingNumber": "TRK12345",
+  "carrier": "BlueDart"
+}

@@ -326,7 +326,5 @@ annotate service.PurchaseOrders with {
     status @Common.ValueCriticality #Rejected : 1;
     status @Common.ValueCriticality #Draft    : 0;
 };
-annotate service.PurchaseOrderItems with {
-    quantity @Measures.ISOCurrency : product.currency_code
-};
+
 

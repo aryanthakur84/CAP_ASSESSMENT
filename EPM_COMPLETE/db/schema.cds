@@ -32,7 +32,7 @@ entity Products : cuid, managed {
     name        : String(100);
     description : String(255);
     price       : Decimal(10,2);
-    currency    : Currency;
+    // currency    : Currency;
     stock       : Integer;
     minStock    : Integer;
     rating      : Decimal(3,2);

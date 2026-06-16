@@ -24,7 +24,7 @@ this.after('READ', 'PurchaseOrders', (results) => {
         po.statusPercent = po.status === 'Draft' ? 25 :
                            po.status === 'Pending' ? 50 :
                            po.status === 'Approved' ? 100 :
-                           po.status === 'Received' ? 100 : 0;
+                           po.status === 'Rejected' ? 100 : 0;
     }
 });
 

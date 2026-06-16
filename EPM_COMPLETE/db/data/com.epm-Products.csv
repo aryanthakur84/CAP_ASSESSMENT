@@ -1,9 +1,9 @@
-ID,name,description,price,currency_code,stock,minStock,rating,supplier_ID,category_ID
-577b5f11-9b24-472b-b53b-5fb63ed7b3db,Dell Laptop,Latitude Series,65000,INR,20,5,4.5,2d4a6f8a-f3cf-4351-bf8a-1db211d674e3,0ad68fe6-4fac-4d29-b7a3-6b42404bf65d
-6d734393-1df3-4284-9400-37765cd36706,HP Laptop,Elitebook,70000,INR,10   ,5,4.2,2d4a6f8a-f3cf-4351-bf8a-1db211d674e3,0ad68fe6-4fac-4d29-b7a3-6b42404bf65d
-03f85b69-0016-41d9-83d9-54a9de7b9846,iPhone,Apple Phone,90000,INR,8,10,4.8,8f97c885-9ca4-4b34-9557-3a0ac1b4702c,ec1d2a99-1785-4c5d-a150-5f16d497ef08
-3a1de987-50c1-48e3-b99e-c026e46d041a,Samsung S24,Android Phone,80000,INR,12,5,4.6,8f97c885-9ca4-4b34-9557-3a0ac1b4702c,ec1d2a99-1785-4c5d-a150-5f16d497ef08
-754b32ea-2b17-44b0-8e6f-7d46b4f5ac06,Mouse,Wireless Mouse,1000,INR,1,10,4.0,e3c2fff6-b9d0-4c3a-8f0c-5f07b0dd08d7,8cb32aa9-74aa-4409-9928-64f1a6e426b4
-5e8cb257-16c5-4ad4-801f-53acc3692cc4,Keyboard,Mechanical Keyboard,2500,INR,40,10,4.3,e3c2fff6-b9d0-4c3a-8f0c-5f07b0dd08d7,8cb32aa9-74aa-4409-9928-64f1a6e426b4
-81b28852-7036-402f-a9f1-0f282cdc3e42,Printer,Laser Printer,15000,INR,5,5,4.1,e2ae4d5e-fefc-47e7-911a-24844d6ab945,9fba3789-d3d3-4248-ab1f-bfbf02bb668b
-3f814fb0-ea80-460f-a6a9-c7c6e72b66d8,Monitor,24 Inch Monitor,12000,INR,7,10,4.4,e2ae4d5e-fefc-47e7-911a-24844d6ab945,9fba3789-d3d3-4248-ab1f-bfbf02bb668b
+ID,name,description,price,stock,minStock,rating,supplier_ID,category_ID
+577b5f11-9b24-472b-b53b-5fb63ed7b3db,Dell Laptop,Latitude Series,65000,20,5,4.5,2d4a6f8a-f3cf-4351-bf8a-1db211d674e3,0ad68fe6-4fac-4d29-b7a3-6b42404bf65d
+6d734393-1df3-4284-9400-37765cd36706,HP Laptop,Elitebook,70000,10,5,4.2,2d4a6f8a-f3cf-4351-bf8a-1db211d674e3,0ad68fe6-4fac-4d29-b7a3-6b42404bf65d
+03f85b69-0016-41d9-83d9-54a9de7b9846,iPhone,Apple Phone,90000,8,10,4.8,8f97c885-9ca4-4b34-9557-3a0ac1b4702c,ec1d2a99-1785-4c5d-a150-5f16d497ef08
+3a1de987-50c1-48e3-b99e-c026e46d041a,Samsung S24,Android Phone,80000,12,5,4.6,8f97c885-9ca4-4b34-9557-3a0ac1b4702c,ec1d2a99-1785-4c5d-a150-5f16d497ef08
+754b32ea-2b17-44b0-8e6f-7d46b4f5ac06,Mouse,Wireless Mouse,1000,1,10,4.0,e3c2fff6-b9d0-4c3a-8f0c-5f07b0dd08d7,8cb32aa9-74aa-4409-9928-64f1a6e426b4
+5e8cb257-16c5-4ad4-801f-53acc3692cc4,Keyboard,Mechanical Keyboard,2500,40,10,4.3,e3c2fff6-b9d0-4c3a-8f0c-5f07b0dd08d7,8cb32aa9-74aa-4409-9928-64f1a6e426b4
+81b28852-7036-402f-a9f1-0f282cdc3e42,Printer,Laser Printer,15000,5,5,4.1,e2ae4d5e-fefc-47e7-911a-24844d6ab945,9fba3789-d3d3-4248-ab1f-bfbf02bb668b
+3f814fb0-ea80-460f-a6a9-c7c6e72b66d8,Monitor,24 Inch Monitor,12000,7,10,4.4,e2ae4d5e-fefc-47e7-911a-24844d6ab945,9fba3789-d3d3-4248-ab1f-bfbf02bb668b

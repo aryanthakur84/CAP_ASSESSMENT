@@ -6,6 +6,7 @@ select from epm.Products {
     name,
     price,
     stock,
+    rating,
     supplier.name as supplierName,
     category.name as categoryName
 };

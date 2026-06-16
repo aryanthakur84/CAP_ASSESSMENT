@@ -3,6 +3,36 @@ const { SELECT, UPDATE } = cds.ql;
 
 module.exports = function () {
 
+
+
+  this.after('READ', 'PurchaseOrders', (results) => {
+    const pos = Array.isArray(results) ? results : [results];
+    for (const po of pos) {
+        if (po.status === 'Draft') {
+            po.poNumberEditable = 7;   // Mandatory/Editable
+            po.supplierEditable = 7;   // Mandatory/Editable
+        } else {
+            po.poNumberEditable = 1;   // ReadOnly
+            po.supplierEditable = 1;   // ReadOnly
+        }
+    }
+});
+
+
+  // ═══════════════════════════════════════════════
+// VALIDATION: During Draft Editing (before activation)
+// ═══════════════════════════════════════════════
+this.before('CREATE', 'PurchaseOrders', (req) => {
+  if (!req.data.supplier_ID) req.error(400, 'Supplier is required');
+});
+
+// ═══════════════════════════════════════════════
+// VALIDATION: Before Save/Activation
+// ═══════════════════════════════════════════════
+this.before('SAVE', 'PurchaseOrders', (req) => {
+  if (!req.data.poNumber) req.error(400, 'PO Number is required');
+});
+
   // ═══════════════════════════════════════════════
   // SUBMIT Purchase Order
   // ═══════════════════════════════════════════════
@@ -20,7 +50,7 @@ module.exports = function () {
     if (po.status !== 'Draft') {
       req.reject(
         400,
-        `Cannot submit: PO is in "${po.status}" status. Only Draft POs can be submitted.`
+        `Cannot submit: PO is in "${po.status}" status. Only Draft POs can be Pending.`
       );
     }
 
@@ -42,7 +72,7 @@ module.exports = function () {
 
     await UPDATE(PurchaseOrders)
       .set({
-        status: 'Submitted',
+        status: 'Pending',
         amount: +total.toFixed(2)
       })
       .where({ ID });
@@ -51,17 +81,17 @@ module.exports = function () {
       .from(Suppliers)
       .where({ ID: po.supplier_ID });
 
-    await this.emit('POSubmitted', {
+    await this.emit('POPending', {
       poId: ID,
       poNumber: po.poNumber,
       supplierName: supplier?.name || 'Unknown',
       totalAmount: +total.toFixed(2),
-      submittedBy: req.user.id
+      PendingBy: req.user.id
     });
 
     return {
-      status: 'Submitted',
-      message: `PO ${po.poNumber} submitted for approval. Total: ${total.toFixed(2)}`
+      status: 'Pending',
+      message: `PO ${po.poNumber} Pending for approval. Total: ${total.toFixed(2)}`
     };
   });
 
@@ -83,10 +113,10 @@ module.exports = function () {
       req.reject(404, 'Purchase Order not found');
     }
 
-    if (po.status !== 'Submitted') {
+    if (po.status !== 'Pending') {
       req.reject(
         400,
-        `Cannot approve: PO is in "${po.status}" status. Only Submitted POs can be approved.`
+        `Cannot approve: PO is in "${po.status}" status. Only Pending POs can be approved.`
       );
     }
 
@@ -126,10 +156,10 @@ module.exports = function () {
       req.reject(404, 'Purchase Order not found');
     }
 
-    if (po.status !== 'Submitted') {
+    if (po.status !== 'Pending') {
       req.reject(
         400,
-        `Cannot reject: PO is in "${po.status}" status. Only Submitted POs can be rejected.`
+        `Cannot reject: PO is in "${po.status}" status. Only Pending POs can be rejected.`
       );
     }
 
@@ -280,7 +310,7 @@ module.exports = function () {
     return {
       totalPOs: allPOs.length,
       draftCount: allPOs.filter(p => p.status === 'Draft').length,
-      pendingApproval: allPOs.filter(p => p.status === 'Submitted').length,
+      pendingApproval: allPOs.filter(p => p.status === 'Pending').length,
       approvedCount: allPOs.filter(p => p.status === 'Approved').length,
       totalSpend: +allPOs
         .filter(p => ['Approved', 'Received'].includes(p.status))
@@ -293,8 +323,8 @@ module.exports = function () {
   // EVENT LISTENERS
   // ═══════════════════════════════════════════════
 
-  this.on('POSubmitted', msg => {
-    console.log('[PO SUBMITTED]', msg.data.poNumber);
+  this.on('POPending', msg => {
+    console.log('[PO Pending]', msg.data.poNumber);
   });
 
   this.on('POApproved', msg => {

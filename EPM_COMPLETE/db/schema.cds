@@ -17,6 +17,11 @@ entity Suppliers : cuid {
     isActive  : Boolean;
 }
 
+entity StatusValues {
+    key code : String(20);
+    name     : String(50);
+}
+
 entity Categories : cuid {
     name            : String(100);
     description     : String(255);

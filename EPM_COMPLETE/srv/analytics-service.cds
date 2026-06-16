@@ -3,6 +3,8 @@ using { ProductCatalog as PC } from '../db/views';
 
 service AnalyticsService @(path:'/analytics') {
 
+
+
     action GenerateReport(
         reportType : String(20),
         startDate  : Date,
@@ -21,4 +23,7 @@ service AnalyticsService @(path:'/analytics') {
 
     @readonly
     entity ProductCatalog as projection on PC;
+
+    @readonly
+    entity Categories as projection on epm.Categories;
 }

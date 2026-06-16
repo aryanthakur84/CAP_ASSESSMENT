@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+  <VBox class="sapUiSmallMargin">
+    <Title text="PO Status Progress" level="H3"/>
+    <ProgressIndicator
+      percentValue="{= ${status} === 'Draft' ? 25 : ${status} === 'Pending' ? 50 : ${status} === 'Approved' ? 75 : ${status} === 'Received' ? 100 : 0}"
+      displayValue="{status}"
+      state="{= ${status} === 'Approved' ? 'Success' : ${status} === 'Rejected' ? 'Error' : ${status} === 'Pending' ? 'Warning' : 'None'}"
+    />
+    <Text text="{= ${status} === 'Draft' ? 'Step 1/4: Draft created' : ${status} === 'Pending' ? 'Step 2/4: Awaiting approval' : ${status} === 'Approved' ? 'Step 3/4: Approved' : ${status} === 'Received' ? 'Step 4/4: Received' : 'Unknown status'}" class="sapUiTinyMarginTop"/>
+  </VBox>
+</core:FragmentDefinition>

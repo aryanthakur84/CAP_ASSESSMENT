@@ -7,6 +7,7 @@ service PurchasingService @(path: '/purchasing') {
     *,
     virtual null as poNumberEditable : Integer,
     virtual null as supplierEditable : Integer,
+    virtual null as statusPercent    : Integer,
   }
   actions {
     action submit() returns {

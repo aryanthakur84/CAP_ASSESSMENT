@@ -32,6 +32,7 @@ annotate service.PurchaseOrders with @(
             $Type : 'UI.DataField',
             Value : poNumber,
         },
+        ImageUrl : supplier.name,
     },
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
@@ -104,6 +105,26 @@ annotate service.PurchaseOrders with @(
             Label : 'Reject',
         },
     ],
+    UI.DataPoint #amount : {
+        Value : amount,
+        Visualization : #Rating,
+        TargetValue : 5,
+    },
+    UI.DataPoint #amount1 : {
+        Value : amount,
+        Visualization : #Progress,
+        TargetValue : 100,
+    },
+    UI.DataPoint #poNumberEditable : {
+        Value : poNumberEditable,
+        Visualization : #Progress,
+        TargetValue : 100,
+    },
+    UI.DataPoint #supplierEditable : {
+        Value : supplierEditable,
+        Visualization : #Progress,
+        TargetValue : 100,
+    },
 );
 
 annotate service.PurchaseOrders with {
@@ -186,8 +207,9 @@ UI.HeaderInfo : {
         TypeNamePlural : 'Items',
         Title : {
             $Type : 'UI.DataField',
-            Value : quantity,
+            Value : product.name,
         },
+    ImageUrl : product.name,
     },
     UI.FieldGroup #ItemDetails : {
         $Type : 'UI.FieldGroupType',
@@ -304,3 +326,7 @@ annotate service.PurchaseOrders with {
     status @Common.ValueCriticality #Rejected : 1;
     status @Common.ValueCriticality #Draft    : 0;
 };
+annotate service.PurchaseOrderItems with {
+    quantity @Measures.ISOCurrency : product.currency_code
+};
+

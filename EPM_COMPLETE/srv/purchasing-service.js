@@ -18,6 +18,16 @@ module.exports = function () {
     }
 });
 
+this.after('READ', 'PurchaseOrders', (results) => {
+    const pos = Array.isArray(results) ? results : [results];
+    for (const po of pos) {
+        po.statusPercent = po.status === 'Draft' ? 25 :
+                           po.status === 'Pending' ? 50 :
+                           po.status === 'Approved' ? 100 :
+                           po.status === 'Received' ? 100 : 0;
+    }
+});
+
 
   // ═══════════════════════════════════════════════
 // VALIDATION: During Draft Editing (before activation)

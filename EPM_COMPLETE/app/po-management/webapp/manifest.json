@@ -149,10 +149,13 @@
                       "title": "PO Status Progress",
                       "position": {
                         "placement": "After",
-                        "anchor": "GeneralInfoSection"
+                        "anchor": "Items"
                       }
                     }
                   }
+                },
+                "header": {
+                  "anchorBarVisible": true
                 }
               }
             }

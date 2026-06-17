@@ -3,7 +3,7 @@ const { SELECT, UPDATE } = cds.ql;
 
 module.exports = function () {
 
-
+// Handler
 
   this.after('READ', 'PurchaseOrders', (results) => {
     const pos = Array.isArray(results) ? results : [results];

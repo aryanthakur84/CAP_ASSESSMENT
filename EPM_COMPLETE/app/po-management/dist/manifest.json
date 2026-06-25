@@ -29,6 +29,19 @@
 					"odataVersion": "4.0"
 				}
 			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"semanticObject": "PurchaseOrders",
+					"action": "manage",
+					"title": "Manage Purchase Orders",
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					}
+				}
+			}
 		}
 	},
 	"sap.ui": {

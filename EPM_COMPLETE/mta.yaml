@@ -101,9 +101,11 @@ resources:
     service-plan: app-runtime
 - name: epm-complete-destination-service
   type: org.cloudfoundry.managed-service
+  requires:
+  - name: srv-api
   parameters:
     config:
-      HTML5Runtime_enabled: false
+      HTML5Runtime_enabled: true
       init_data:
         instance:
           destinations:
@@ -112,6 +114,15 @@ resources:
             ProxyType: Internet
             Type: HTTP
             URL: https://ui5.sap.com
+
+          - Authentication: NoAuthentication
+            Name: po-management-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+            HTML5.ForwardAuthToken: true
+            HTML5.DynamicDestination: true
+
           existing_destinations_policy: update
       version: 1.0.0
     service: destination

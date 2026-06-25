@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:m="sap.m">
+
+    <m:VBox class="sapUiSmallMargin">
+        <m:Title
+            text="Order Value Status"
+            level="H3"/>
+
+        <m:ProgressIndicator
+            percentValue="{= ${amount} / 10000 > 1 ? 100 : (${amount} / 10000) * 100}"
+            displayValue="{= ${amount} + ' / 10,000 budget threshold'}"
+            state="{= ${amount} > 8000 ? 'Error' : ${amount} > 5000 ? 'Warning' : 'Success'}"/>
+
+        <m:Text
+            class="sapUiTinyMarginTop"
+            text="{= ${amount} > 8000 ? 'Manager approval required: Yes' : 'Manager approval required: No'}"/>
+    </m:VBox>
+
+</core:FragmentDefinition>

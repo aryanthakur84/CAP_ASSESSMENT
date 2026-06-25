@@ -13,6 +13,7 @@ select from epm.Products {
 
 view OrderReport as
 select from epm.SalesOrders {
+    ID,
     orderNumber,
     customer.name as customerName,
     amount,
@@ -22,6 +23,7 @@ select from epm.SalesOrders {
 
 view LowStockAlert as
 select from epm.Products {
+    ID,
     name,
     stock,
     minStock,

@@ -2,16 +2,25 @@
   "name": "epm-complete",
   "version": "1.0.0",
   "dependencies": {
-    "@sap/cds": "^9"
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4.13.0",
+    "passport": "^0.7.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4",
-    "cds-plugin-ui5": "^0.17.0"
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.17.0",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
   },
   "scripts": {
     "start": "cds-serve",
     "watch-epmmodel": "cds watch --open epmmodel/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-po-management": "cds watch --open pomanagement/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-po-management": "cds watch --open pomanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy epm-complete --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
   },
   "private": true,
   "cds": {
@@ -20,8 +29,42 @@
         "kind": "sqlite",
         "credentials": {
           "url": "db/epm.db"
+        },
+        "auth": {
+          "kind": "xsuaa",
+          "[development]": {
+            "kind": "mocked",
+            "users": {
+              "viewer@test.com": {
+                "password": "pass",
+                "roles": [
+                  "Viewer"
+                ]
+              },
+              "manager@test.com": {
+                "password": "pass",
+                "roles": [
+                  "PurchaseManager"
+                ]
+              },
+              "admin@test.com": {
+                "password": "pass",
+                "roles": [
+                  "Administrator"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana"
         }
       }
+    },
+    "[production]": {
+      "auth": "xsuaa"
     }
   },
   "workspaces": [

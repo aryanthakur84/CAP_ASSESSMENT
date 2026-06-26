@@ -22,6 +22,7 @@ modules:
   type: approuter.nodejs
   path: app/router
   requires:
+  - name: epm-complete-html5-runtime
   - name: srv-api
     group: destinations
     properties:
@@ -35,7 +36,6 @@ modules:
       forwardAuthToken: false
       name: ui5
       url: https://ui5.sap.com
-  - name: epm-complete-html5-runtime
   provides:
   - name: app-api
     properties:
@@ -56,8 +56,12 @@ modules:
   type: com.sap.application.content
   path: .
   requires:
+  - name: epm-complete-auth
+  - name: srv-api
   - name: epm-complete-repo-host
     parameters:
+      config:
+        HTML5Runtime_enabled: true
       content-target: true
   build-parameters:
     build-result: resources
@@ -80,9 +84,15 @@ resources:
 - name: epm-complete-auth
   type: org.cloudfoundry.managed-service
   parameters:
+    config:
+      oauth2-configuration:
+        redirect-uris:
+        - https://*~{app-api/app-uri}/**
     path: ./xs-security.json
     service: xsuaa
     service-plan: application
+  requires:
+  - name: app-api
 - name: epm-complete-db
   type: com.sap.xs.hdi-container
   parameters:
@@ -94,6 +104,8 @@ resources:
     service: html5-apps-repo
     service-name: epm-complete-html5-service
     service-plan: app-host
+    config:
+      HTML5Runtime_enabled: true
 - name: epm-complete-html5-runtime
   type: org.cloudfoundry.managed-service
   parameters:
@@ -103,6 +115,7 @@ resources:
   type: org.cloudfoundry.managed-service
   requires:
   - name: srv-api
+  - name: app-api
   parameters:
     config:
       HTML5Runtime_enabled: true
@@ -114,15 +127,13 @@ resources:
             ProxyType: Internet
             Type: HTTP
             URL: https://ui5.sap.com
-
           - Authentication: NoAuthentication
-            Name: po-management-api
+            Name: srv-api
             ProxyType: Internet
             Type: HTTP
             URL: ~{srv-api/srv-url}
             HTML5.ForwardAuthToken: true
             HTML5.DynamicDestination: true
-
           existing_destinations_policy: update
       version: 1.0.0
     service: destination

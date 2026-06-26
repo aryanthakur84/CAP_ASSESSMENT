@@ -1,11 +1,11 @@
 {
+  "Component-preload.js": 1782461504344,
   "Component.js": 1781515361494,
-  "i18n/i18n.properties": 1781515361498,
-  "manifest.json": 1782395355524,
+  "manifest.json": 1782455613460,
   "Component-dbg.js": 1781515361494,
-  "Component.js.map": 1782397020724,
-  "Component-preload.js": 1782397020822,
-  "Component-preload.js.map": 1782397020822,
+  "Component.js.map": 1782461504241,
+  "i18n/i18n.properties": 1781515361498,
+  "Component-preload.js.map": 1782461504344,
   "ext/POStatusSection.fragment.xml": 1781628206258,
   "index.html": 1781515361498
 }

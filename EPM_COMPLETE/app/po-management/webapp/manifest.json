@@ -39,6 +39,11 @@
     }
   }
   },
+  
+  "sap.cloud": {
+  "public": true,
+  "service": "pomanagement"
+},
   "sap.ui": {
     "technology": "UI5",
     "icons": {

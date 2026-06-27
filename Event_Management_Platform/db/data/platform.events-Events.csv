@@ -1,5 +1,0 @@
-ID,title,description,eventType,venue_ID,startDate,endDate,startTime,endTime,maxAttendees,registeredCount,ticketPrice,status,organizerName,organizerEmail,tags
-ev111111-0000-0000-0000-000000000001,Cloud Summit 2024,Annual cloud computing conference,Conference,v1111111-0000-0000-0000-000000000001,2024-07-10,2024-07-11,09:00:00,18:00:00,400,320,2500.00,Published,EventHub Team,events@eventhub.com,"cloud,tech,aws"
-ev111111-0000-0000-0000-000000000002,AI Workshop,Hands-on ML workshop,Workshop,v1111111-0000-0000-0000-000000000002,2024-07-20,2024-07-20,10:00:00,17:00:00,50,45,1500.00,Published,EventHub Team,events@eventhub.com,"ai,ml,python"
-ev111111-0000-0000-0000-000000000003,Startup Meetup,Network with founders,Meetup,v1111111-0000-0000-0000-000000000003,2024-08-05,2024-08-05,16:00:00,20:00:00,500,200,500.00,Published,EventHub Team,events@eventhub.com,"startup,networking"
-ev111111-0000-0000-0000-000000000004,UX Seminar,Design thinking seminar,Seminar,v1111111-0000-0000-0000-000000000002,2024-08-15,2024-08-15,11:00:00,16:00:00,100,0,1000.00,Draft,EventHub Team,events@eventhub.com,"ux,design"

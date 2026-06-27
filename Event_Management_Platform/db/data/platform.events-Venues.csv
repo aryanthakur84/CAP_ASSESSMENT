@@ -1,4 +1,0 @@
-ID,name,address,city,capacity,type,amenities,hourlyRate,contactPerson,phone,isActive
-v1111111-0000-0000-0000-000000000001,Tech Arena,12 MG Road,Bangalore,500,Auditorium,"WiFi,Projector,AC",5000.00,Suresh Kumar,+91-9811111111,true
-v1111111-0000-0000-0000-000000000002,Biz Hub,45 Nariman Point,Mumbai,200,ConferenceHall,"WiFi,Whiteboard,AC",3000.00,Priya Shah,+91-9811111112,true
-v1111111-0000-0000-0000-000000000003,Open Grounds,78 Jubilee Hills,Hyderabad,2000,Outdoor,"Stage,Parking,Security",8000.00,Ramesh Rao,+91-9811111113,true
